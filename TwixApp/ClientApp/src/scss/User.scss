@@ -1,0 +1,83 @@
+@use '_generalStyles';
+
+.passed{ background-image: linear-gradient(to left, transparent, rgba(lightGreen, 0.4)); }
+.failed{ background-image: linear-gradient(to left, transparent, rgba(red, 0.15)); }
+.hide-input{
+    max-width: 0px !important;
+    max-height: 0px !important;
+    margin: 15px 0 -17px !important;
+}
+
+.signin-container{
+    h2{ margin: 50px 0 80px; }
+    h5{ margin-left: 10px; padding: 10px;}
+
+    .status-msg{margin-top: -41px}
+
+    form{
+        display: flex;
+        flex-direction: column;
+        max-width: 450px;
+        min-width: 200px;
+
+        input{
+            height: 40px;
+            max-height: 40px;
+            max-width: 450px;
+            margin: 15px 10px 0;
+            border: none;
+            border-bottom: 2px solid rgba(generalStyles.$light_Blue, 0.6);
+            transition: all .7s cubic-bezier(.86,0,.07,1) 0s;
+
+            &:focus{
+                outline: none;
+            }
+        }
+
+
+    }
+
+    .list{
+        margin-left: 10px;
+        font-size: small;
+        max-height: 100px;
+        max-width: 450px;
+        overflow: hidden;
+        transition: all .7s cubic-bezier(.86,0,.07,1) 0s;
+
+        li { list-style-position: inside; }
+    }
+
+    .buttons{
+        max-width: 450px;
+        min-width: 100px;
+        max-height: 40px;
+        display: flex;
+        margin: 0;
+        padding: 0 10px 0 10px;
+        justify-content: end;
+        align-items: center;
+        flex-wrap: wrap;
+        
+        button{
+            width: 100px;
+            height: 40px;
+            border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
+            border: 2px solid rgba(generalStyles.$light_Blue, 0.6);
+            border-top: none;
+            background-color: transparent;
+        }
+
+        button:first-of-type{ margin-right: auto; }
+
+        p{ margin: 0 10px; }
+
+        @media screen and (max-width: generalStyles.$xsmall){
+            button:last-of-type{
+                border-top: 2px solid rgba(generalStyles.$light_Blue, 0.6);
+                border-radius: 10px;
+            }
+            button:first-of-type{ margin-bottom: 30px; }
+        }
+    }
+}

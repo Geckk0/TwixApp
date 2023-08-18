@@ -1,0 +1,297 @@
+.twix-container {
+  width: 100%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.twix1 * {
+  border-top-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+}
+
+.twix1 {
+  background-color: rgba(226, 240, 245, 0.705);
+  width: 90%;
+  max-width: 1155px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: [line1] 1fr [line2] 2fr [line3];
+  column-gap: 20px;
+  border-radius: 17px 0 17px 0;
+  box-shadow: 3px 3px 10px rgb(185, 185, 185);
+}
+.twix1 .image-text {
+  background-color: rgba(138, 225, 252, 0.705);
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.twix1 .image-text h3 {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  background-color: rgba(226, 240, 245, 0.705);
+  border-radius: 0;
+  box-shadow: 3px 3px 10px rgb(185, 185, 185);
+  padding-top: 20px;
+}
+.twix1 .images {
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 225px;
+  display: grid;
+  grid-template-columns: [line1] 1fr [line2] 1fr [line3] 1fr [line4];
+  grid-template-rows: [row1] auto [row2];
+  gap: 20px;
+}
+.twix1 .images img {
+  max-width: 100%;
+  min-height: 100%;
+  justify-self: center;
+  object-fit: cover;
+}
+.twix1 .images .img1 {
+  grid-column-start: line1;
+  grid-row-start: row1;
+}
+.twix1 .images .img2 {
+  grid-column-start: line2;
+  grid-row-start: row1;
+  grid-row-end: row2;
+  position: relative;
+  overflow: hidden;
+}
+.twix1 .images .img2 .overlay-hint {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  left: -30px;
+  bottom: -30px;
+  background-color: rgba(226, 240, 245, 0.705);
+  transition: 0.3s ease-in-out;
+  transition-delay: 0.1s;
+}
+.twix1 .images .img2:hover .overlay-hint {
+  height: 0;
+  width: 0;
+  transition-delay: 0s;
+}
+.twix1 .images .img2 .overlay {
+  position: absolute;
+  height: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(226, 240, 245, 0.705);
+  width: 100%;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+}
+.twix1 .images .img2 .overlay p {
+  font-size: calc(10px + 0.1vw);
+  padding: 10px;
+}
+.twix1 .images .img2:hover .overlay {
+  height: 120px;
+  margin-top: -123px;
+}
+.twix1 .images .img3 {
+  grid-column-start: line3;
+  grid-row-start: row1;
+}
+@media screen and (max-width: 1000px) {
+  .twix1 .images {
+    grid-template-columns: [line1] 1fr [line2] 2fr [line3];
+    grid-template-rows: [row1] auto [row2] auto [row3];
+  }
+  .twix1 .images .img2 {
+    grid-row-end: row3;
+  }
+  .twix1 .images .img3 {
+    grid-row-start: row2;
+    grid-column-start: line1;
+  }
+}
+
+.twix2 {
+  margin-top: 30px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  max-width: 1155px;
+}
+.twix2 * {
+  transition: 0.3s ease-in-out;
+}
+.twix2 .fifty {
+  width: 50%;
+}
+.twix2 .twentyfive {
+  width: 25%;
+}
+.twix2 .zero {
+  width: 0%;
+}
+.twix2 .left-rotate {
+  transform: rotate(-135deg);
+}
+.twix2 .right-rotate {
+  transform: rotate(45deg);
+}
+.twix2 .divider {
+  border-top-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+  background-color: rgba(226, 240, 245, 0.705);
+  overflow: hidden;
+}
+.twix2 .divider div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150%;
+  height: 60px;
+  background-color: rgba(138, 225, 252, 0.705);
+  box-shadow: 3px 3px 10px rgb(185, 185, 185);
+}
+.twix2 .divider .where-there {
+  transform: rotate(-35deg);
+  zoom: 1.007;
+  margin-left: -50%;
+  margin-top: 20px;
+}
+.twix2 .divider .is-he {
+  transform: rotate(10deg);
+  zoom: 1.007;
+  margin-left: -25%;
+  margin-top: 30px;
+}
+.twix2 .divider .twix-is {
+  transform: rotate(-35deg);
+  zoom: 1.007;
+  margin-top: 20px;
+}
+.twix2 .img-container-left {
+  overflow: hidden;
+  background-color: rgba(138, 225, 252, 0.705);
+  border-bottom-right-radius: 17px;
+}
+.twix2 .img-container-right {
+  overflow: hidden;
+  background-color: rgba(138, 225, 252, 0.705);
+  border-top-left-radius: 17px;
+}
+.twix2 img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border-top-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+  margin: 10px;
+}
+.twix2 button {
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  font-size: calc(10px + 0.2vw);
+}
+.twix2 .left-btn-1 {
+  margin: 20px 0 0 3%;
+  background-color: rgba(255, 182, 193, 0.5);
+  border-color: lightcoral;
+}
+.twix2 .left-btn-2 {
+  margin: 60px 0 0 13%;
+  background-color: rgba(172, 255, 47, 0.5);
+  border-color: green;
+}
+.twix2 .left-btn-3 {
+  margin: 100px 0 0 6%;
+  background-color: rgba(210, 105, 30, 0.5);
+  border-color: brown;
+}
+.twix2 .left-btn-4 {
+  margin: 180px 0 0 14%;
+  background-color: rgba(255, 0, 0, 0.5);
+  border-color: crimson;
+}
+.twix2 .left-btn-5 {
+  margin: 200px 0 0 2%;
+  background-color: rgba(0, 255, 255, 0.5);
+  border-color: darkcyan;
+}
+.twix2 .right-btn-1 {
+  height: 40px;
+  width: 40px;
+  border-radius: 0;
+  background-color: transparent;
+  border: 0;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  margin-left: 10%;
+  margin-top: 130px;
+}
+@media screen and (min-width: 1000px) {
+  .twix2 {
+    border-left: 4px solid rgba(226, 240, 245, 0.705);
+    border-right: 4px solid rgba(226, 240, 245, 0.705);
+  }
+}
+@media screen and (max-width: 800px) {
+  .twix2 {
+    flex-direction: column;
+    height: 800px;
+    align-items: center;
+    width: 100%;
+  }
+  .twix2 .fifty {
+    width: 90%;
+  }
+  .twix2 .twentyfive {
+    width: 90%;
+  }
+  .twix2 .left-btn-1 {
+    margin: 5px 0 0 1%;
+  }
+  .twix2 .left-btn-2 {
+    margin: 30px 0 0 52%;
+  }
+  .twix2 .left-btn-3 {
+    margin: 50px 0 0 36%;
+  }
+  .twix2 .left-btn-4 {
+    margin: 150px 0 0 5%;
+  }
+  .twix2 .left-btn-5 {
+    margin: 175px 0 0 25%;
+  }
+  .twix2 .right-btn-1 {
+    height: 20px;
+    width: 20px;
+  }
+  .twix2 .left-rotate {
+    transform: rotate(135deg);
+  }
+  .twix2 .right-rotate {
+    transform: rotate(-45deg);
+  }
+  .twix2 .divider {
+    margin: 30px 0;
+  }
+  .twix2 .left-btn-container {
+    margin: 10px 0 -30px 0;
+  }
+  .twix2 .right-btn-1 {
+    margin: -20px 0 0 30%;
+  }
+}
+
+/*# sourceMappingURL=Twix.css.map */
