@@ -1,0 +1,29 @@
+.year-container {
+  display: flex;
+}
+.year-container section {
+  padding: 7px;
+}
+.year-container .logs-container {
+  width: 100%;
+  padding-top: 40px;
+}
+.year-container .logs-container .title-container {
+  display: flex;
+  margin-left: -75px;
+}
+.year-container .logs-container .title-container h4:first-of-type {
+  width: 75px;
+  min-width: 75px;
+}
+.year-container .logs-container .logs {
+  border-left: 2px solid rgba(138, 225, 252, 0.5);
+  padding: 7px;
+  margin-bottom: 20px;
+}
+.year-container .logs-container .logs .horisontal-divider {
+  border-bottom: 2px solid rgba(138, 225, 252, 0.5);
+  margin-left: -7px;
+}
+
+/*# sourceMappingURL=DevLog.css.map */

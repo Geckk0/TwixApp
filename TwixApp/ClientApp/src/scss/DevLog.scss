@@ -1,0 +1,33 @@
+@use 'generalStyles';
+
+.year-container{
+    display: flex;
+
+    section{ padding: 7px; }
+
+    .logs-container{
+        width: 100%;
+        padding-top: 40px;
+
+        .title-container{
+            display: flex;
+            margin-left: -75px;
+            
+            h4:first-of-type{
+                width: 75px;
+                min-width: 75px;
+            }
+        }
+
+        .logs{
+            border-left: 2px solid rgba(generalStyles.$light_Blue, 0.5);
+            padding: 7px;
+            margin-bottom: 20px;
+
+            .horisontal-divider{
+                border-bottom: 2px solid rgba(generalStyles.$light_Blue, 0.5);
+                margin-left: -7px;
+            }
+        }
+    }
+}
