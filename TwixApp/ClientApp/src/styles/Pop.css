@@ -1,3 +1,40 @@
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  min-width: 200px;
+}
+form input {
+  height: 40px;
+  max-height: 40px;
+  max-width: 450px;
+  margin: 15px 10px 0;
+  border: none;
+  border-bottom: 2px solid rgba(138, 225, 252, 0.6);
+  transition: all 0.7s cubic-bezier(0.86, 0, 0.07, 1) 0s;
+}
+form input:focus {
+  outline: none;
+}
+form .buttons {
+  max-width: 450px;
+  min-width: 100px;
+  max-height: 40px;
+  display: flex;
+  margin: 0;
+  padding: 10px;
+  justify-content: end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+form .buttons button {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid rgba(138, 225, 252, 0.6);
+  background-color: transparent;
+}
+
 .showcase {
   width: 100%;
   padding: 10px;

@@ -1,7 +1,7 @@
-import { useState, useContext } from 'react';
-import { Context } from '../App';
+import { useState, useContext } from 'react'
+import { Context } from '../App'
 import { useHistory } from 'react-router-dom'
-import '../styles/User.css';
+import '../styles/User.css'
 
 function Login() {
   const [context, updateContext] = useContext(Context)
