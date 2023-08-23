@@ -17,16 +17,19 @@ function NavMenu()  {
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/twix">Twix</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/Dev-log">Dev log</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/pops">Pops</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/Twix">Twix</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/Pops">Pops</NavLink>
               </NavItem>
               <NavItem>
                 {context.user ? 
                 <NavLink onClick={() => updateContext({user: false})} tag={Link} className="text-dark" to="/">Sign out</NavLink>
                 :
-                <NavLink tag={Link} className="text-dark" to="/connect">Sign in</NavLink>}
+                <NavLink tag={Link} className="text-dark" to="/Connect">Sign in</NavLink>}
               </NavItem>
             </ul>
           </Collapse>

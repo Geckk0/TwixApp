@@ -15,7 +15,7 @@ function About() {
         <h3>About me</h3>
         <p>My name is Jesper and I am a junior system developer.(you know this already)</p>
         <p>I spend most of my time playing with my dog or go out golfing when the weather is good.</p>
-        <p>Here is my CV: <a href={require("../images/CV.pdf")} download="CV_Jesper_Ljungdahl.pdf" rel="noopener noreferrer">CV.pdf</a></p>
+        <p>Here is my CV: <a href={require("../files/CV.pdf")} download="CV_Jesper_Ljungdahl.pdf" rel="noopener noreferrer">CV.pdf</a></p>
       </section>
 
       <section>
