@@ -3,7 +3,7 @@
 namespace TwixApp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/pop")]
     public class PopController : ControllerBase
     {
         private readonly PopBaseContext _context;

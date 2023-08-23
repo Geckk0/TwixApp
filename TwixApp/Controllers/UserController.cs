@@ -3,7 +3,7 @@
 namespace TwixApp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/user")]
     public class UserController : ControllerBase
     {
         private readonly PopBaseContext _context;

@@ -31,6 +31,7 @@ function App() {
         <Route path='/Twix' component={Twix} />
         <Route path='/Pops' component={Pops} />
         <Route path='/Connect' component={Connect} />
+        <Route exact path='/*' component={Intro} />
       </Layout>
     </Context.Provider>
   );

@@ -26,7 +26,7 @@ public partial class PopBaseContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(Configuration.GetConnectionString("TwixDatabase"));
+        => optionsBuilder.UseSqlServer(Configuration.GetConnectionString("AzureTwixDatabase"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
