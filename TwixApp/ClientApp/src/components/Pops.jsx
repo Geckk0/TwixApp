@@ -1,34 +1,41 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react"
+import { Context } from '../App'
+import AddPop from './AddPop'
 import '../styles/Pop.css'
 
 function Pops() {
 
-  const userId = 1
-  const [popList, setPopList] = useState([])
+  const [context, updateContext] = useContext(Context)
 
-  useEffect(() =>{
-    const fetchData = async () => {
-      const response = await fetch("pop/1")
-      const data = await response.json()
-      setPopList(data)
-    } 
+  // const userId = 1
+  // const [popList, setPopList] = useState([])
 
-    fetchData().catch(console.error)
-  })
+  // useEffect(() =>{
+  //   const fetchData = async () => {
+  //     const response = await fetch("pop/1")
+  //     const data = await response.json()
+  //     setPopList(data)
+  //   } 
+
+  //   fetchData().catch(console.error)
+  // })
     
 
-  return (
-    <section className="showcase">
-      {(popList != null)?popList.map((pop) => <div key={pop.id} className="case">
-        <img src={pop.imgUrl} />
-        <div className="desc">
-          {pop.number != 0 ? <p>{pop.number}</p> : <p> --</p>}
-          <p>{pop.name}</p>
-          <p>{pop.series}</p>
-        </div>
-      </div>)
-      :<h2>Loading...</h2>}
-    </section>
+  return (<>
+      <AddPop />
+
+      <section className="showcase">
+        {(context.user.pops != null)?context.user.pops.map((pop) => <div key={pop.id} className="case">
+          <img src={pop.imgUrl} />
+          <div className="desc">
+            {pop.number != 0 ? <p>{pop.number}</p> : <p> --</p>}
+            <p>{pop.name}</p>
+            <p>{pop.series}</p>
+          </div>
+        </div>)
+        :<h2>No pops to show</h2>}
+      </section>
+    </>
   );
 }
 
