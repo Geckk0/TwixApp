@@ -25,7 +25,7 @@ function Pops() {
       <AddPop />
 
       <section className="showcase">
-        {(context.user.pops != null)?context.user.pops.map((pop) => <div key={pop.id} className="case">
+        {(context.user && context.user.pops != null)?context.user.pops.map((pop) => <div key={pop.id} className="case">
           <img src={pop.imgUrl} />
           <div className="desc">
             {pop.number != 0 ? <p>{pop.number}</p> : <p> --</p>}

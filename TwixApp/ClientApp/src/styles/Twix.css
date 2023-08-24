@@ -245,7 +245,7 @@
     border-right: 4px solid rgba(226, 240, 245, 0.705);
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .twix2 {
     flex-direction: column;
     height: 800px;

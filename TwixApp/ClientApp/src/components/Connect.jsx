@@ -120,13 +120,13 @@ function Login() {
         <input onChange={e => setUsername(e.target.value)} type="text" id="username" 
         placeholder='Username' className={stage != 1 && !checkUsername() ? "passed" : undefined}/>
         
-        <input onChange={e => setEmail(e.target.value)} type="text" id="email" 
+        <input onChange={e => setEmail(e.target.value)} type="text" id="email" disabled={stage == 1}
         placeholder='Email' className={stage != 2 ? "hide-input" : !checkEmail() ? "passed" : undefined}/>
         
         <input onChange={e => setPassword(e.target.value)} type="password" id="password" 
         placeholder='Password' className={stage == 2 && !checkPassword() ? "passed" : undefined}/>
 
-        <input onChange={e => setRepeatPassword(e.target.value)} type="password" id="repeatPassword" 
+        <input onChange={e => setRepeatPassword(e.target.value)} type="password" id="repeatPassword"  disabled={stage == 1}
         placeholder='Repeat Password' className={stage != 2 ? "hide-input" : !checkRepeat() ? "passed" : undefined}/>
 
         <div className="buttons">
