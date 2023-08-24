@@ -1,33 +1,73 @@
 @use 'generalStyles';
 
-.year-container{
+.devlog-container{
+    height: calc(100vh - generalStyles.$nav_Size_Big - 1rem);
     display: flex;
+    flex-direction: column;
 
-    section{ padding: 7px; }
-
-    .logs-container{
-        width: 100%;
-        padding-top: 40px;
-
-        .title-container{
-            display: flex;
-            margin-left: -75px;
+    .year-container{
+        display: flex;
+        margin-bottom: auto;
+        overflow: scroll;
+        
+        section{ padding: 7px; }
+        
+        .logs-container{
+            width: 100%;
+            padding-top: 40px;
             
-            h4:first-of-type{
-                width: 75px;
-                min-width: 75px;
+            .title-container{
+                display: flex;
+                margin-left: -70px;
+                
+                h4:first-of-type{
+                    width: 70px;
+                    min-width: 70px;
+                }
+            }
+        
+            .logs{
+                border-left: 2px solid rgba(generalStyles.$light_Blue, 0.5);
+                padding: 7px;
+                margin-bottom: 20px;
+                
+                .horisontal-divider{
+                    border-bottom: 2px solid rgba(generalStyles.$light_Blue, 0.5);
+                    margin-left: -7px;
+                }
             }
         }
+    }
 
-        .logs{
-            border-left: 2px solid rgba(generalStyles.$light_Blue, 0.5);
-            padding: 7px;
-            margin-bottom: 20px;
+    .show-about{
+        max-height: 500px !important;
+        overflow: scroll !important;
+    }
 
-            .horisontal-divider{
-                border-bottom: 2px solid rgba(generalStyles.$light_Blue, 0.5);
-                margin-left: -7px;
-            }
+    .about-popup{
+        width: 100%;
+        border: 1px solid lightgray;
+        border-bottom: none;
+        border-top-left-radius: 17px;
+        transition: all .7s linear 0s;
+        max-height: 80px;
+        overflow: hidden;
+        
+        .about-head{
+            width: 100%;
+            height: 80px;
+            background-image: linear-gradient(generalStyles.$light_Blue, transparent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        
+        section{
+            padding: 0 10px;
+        }
+    }
+
+    @media screen and (max-width: generalStyles.$small) {
+        min-height: calc(100vh - generalStyles.$nav_Size_Small - 1rem);
     }
 }

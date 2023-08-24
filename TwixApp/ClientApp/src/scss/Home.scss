@@ -55,54 +55,35 @@ body:before {
     animation: 0.8s fadeIn 3s ease forwards;
 
     &:first-of-type{ margin-top: 30px; }
-    &:last-of-type{ margin-bottom: auto; }
 }
 
 .box{
+    display: inline-block;
     background-color: generalStyles.$light_Blue;
     padding: 5px;
     border-radius: 17px 0 17px 0;
+    width: max-content;
+    font-weight: bold;
 }
 
 .intro-overlay{
-    z-index: 1200;
+    z-index: -1;
     position: fixed;
     left: 0;
-    top: calc(generalStyles.$nav_Size);
-    height: calc(100vh - generalStyles.$nav_Size);
+    top: calc(generalStyles.$nav_Size_Big);
+    height: calc(100vh - generalStyles.$nav_Size_Big);
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     flex-direction: column;
 
-    .show-about{
-        max-height: 600px !important;
-        overflow-y: scroll;
+    @media screen and (max-width: generalStyles.$small) {
+        top: calc(generalStyles.$nav_Size_Small);
+        height: calc(100vh - generalStyles.$nav_Size_Small);
     }
+}
 
-    .about-popup{
-        width: 80vw;
-        border: 1px solid lightgray;
-        border-bottom: none;
-        border-top-left-radius: 17px;
-        transform: all .7s linear 0s;
-        margin-left: calc(10vw - 2px);
-        max-height: 80px;
-        transform: translateY(100vh);
-        transition: max-height .5s ease-in-out 0s;
-
-        .about-head{
-            width: 100%;
-            height: 80px;
-            border-top-left-radius: 17px;
-            background-image: linear-gradient(generalStyles.$light_Blue, transparent);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        section{
-            padding: 0 10px;
-        }
-    }
+@media screen and (max-width: generalStyles.$small) {
+    .welcome-text{ margin-left: 20px; }
+    .intro-text{ margin-left: 20px; }
 }

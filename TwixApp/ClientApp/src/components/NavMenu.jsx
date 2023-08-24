@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import { Context } from '../App';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -22,15 +22,19 @@ function NavMenu()  {
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/Twix">Twix</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/Pops">Pops</NavLink>
-              </NavItem>
-              <NavItem>
-                {context.user ? 
-                <NavLink onClick={() => updateContext({user: false})} tag={Link} className="text-dark" to="/">Sign out</NavLink>
-                :
-                <NavLink tag={Link} className="text-dark" to="/Connect">Sign in</NavLink>}
-              </NavItem>
+              {context.user ? 
+              <Fragment>
+                {/* <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/Pops">Pops</NavLink>
+                </NavItem> */}
+                <NavItem>
+                  <NavLink onClick={() => updateContext({user: false})} tag={Link} className="text-dark" to="/">Sign out</NavLink>
+                </NavItem>
+              </Fragment>:<Fragment>
+                <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/Connect">Sign in</NavLink>
+                </NavItem>
+              </Fragment>}
             </ul>
           </Collapse>
         </Container>

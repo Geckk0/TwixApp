@@ -1,29 +1,65 @@
-.year-container {
+.devlog-container {
+  height: calc(100vh - 57px - 1rem);
   display: flex;
+  flex-direction: column;
 }
-.year-container section {
+.devlog-container .year-container {
+  display: flex;
+  margin-bottom: auto;
+  overflow: scroll;
+}
+.devlog-container .year-container section {
   padding: 7px;
 }
-.year-container .logs-container {
+.devlog-container .year-container .logs-container {
   width: 100%;
   padding-top: 40px;
 }
-.year-container .logs-container .title-container {
+.devlog-container .year-container .logs-container .title-container {
   display: flex;
-  margin-left: -75px;
+  margin-left: -70px;
 }
-.year-container .logs-container .title-container h4:first-of-type {
-  width: 75px;
-  min-width: 75px;
+.devlog-container .year-container .logs-container .title-container h4:first-of-type {
+  width: 70px;
+  min-width: 70px;
 }
-.year-container .logs-container .logs {
+.devlog-container .year-container .logs-container .logs {
   border-left: 2px solid rgba(138, 225, 252, 0.5);
   padding: 7px;
   margin-bottom: 20px;
 }
-.year-container .logs-container .logs .horisontal-divider {
+.devlog-container .year-container .logs-container .logs .horisontal-divider {
   border-bottom: 2px solid rgba(138, 225, 252, 0.5);
   margin-left: -7px;
+}
+.devlog-container .show-about {
+  max-height: 500px !important;
+  overflow: scroll !important;
+}
+.devlog-container .about-popup {
+  width: 100%;
+  border: 1px solid lightgray;
+  border-bottom: none;
+  border-top-left-radius: 17px;
+  transition: all 0.7s linear 0s;
+  max-height: 80px;
+  overflow: hidden;
+}
+.devlog-container .about-popup .about-head {
+  width: 100%;
+  height: 80px;
+  background-image: linear-gradient(rgba(138, 225, 252, 0.705), transparent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.devlog-container .about-popup section {
+  padding: 0 10px;
+}
+@media screen and (max-width: 768px) {
+  .devlog-container {
+    min-height: calc(100vh - 50px - 1rem);
+  }
 }
 
 /*# sourceMappingURL=DevLog.css.map */
