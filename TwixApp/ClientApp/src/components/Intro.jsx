@@ -13,7 +13,7 @@ function Intro() {
         	<h1 className="welcome-text slide-1">Hello{context.user ? " "+context.user.username : ""},</h1>
         	<h1 className="welcome-text slide-2">My name is Jesper</h1>
 
-			<p className="intro-text">I am a junior <a href={require("../files/CV.pdf")} download="CV_Jesper_Ljungdahl.pdf" rel="noopener noreferrer" className="box">system developer</a></p>
+			<p className="intro-text">I am a junior <a href="https://www.canva.com/design/DAEwlajoLk4/nft8vm50aWodjLfQTw2fvA/view?utm_content=DAEwlajoLk4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" target="_blank" className="box">system developer</a></p>
 			<p className="intro-text">Welcome to my page!</p>
 
 			<img className="cv-pointer" src={pointer} />

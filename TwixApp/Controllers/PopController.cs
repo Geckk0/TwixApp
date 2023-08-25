@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 namespace TwixApp.Controllers
 {
@@ -12,22 +13,31 @@ namespace TwixApp.Controllers
             _context = context;
         }
 
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> GetAll(int userId)
+        [HttpPost("{popName}/{number}/{series}/{imgUrl}/{userId}")]
+        public async Task<IActionResult> CreatePop(string popName, int number, string series, string imgUrl, int userId)
         {
-            List<Pop> popList = await _context.Pops.Where(x => x.UserId.Equals(userId)).ToListAsync();
+            if(string.IsNullOrEmpty(popName) || string.IsNullOrEmpty(series) || string.IsNullOrEmpty(imgUrl)) return StatusCode(400, "All fields Required");
+            if (userId == 0) return StatusCode(201, "No user signed in");
 
-            if(popList.Count == 0) return Ok("No pops found");
-            
-            return Ok(popList);
+            string cleanUrl = HttpUtility.UrlDecode(imgUrl);
+
+            //Get user
+            User user = _context.Users.First(x => x.Id == userId);
+
+            //Create new pop
+            Pop newPop = new Pop();
+            newPop.Name = popName;
+            newPop.Number = number;
+            newPop.Series = series;
+            newPop.ImgUrl = cleanUrl;
+            newPop.UserId = user.Id;
+
+            //Connect editions to pop(to be added)
+
+            _context.Pops.Add(newPop);
+            _context.SaveChanges();
+
+            return Ok(newPop);
         }
-
-        //[HttpGet("{userId}/{popSeries}")]
-        //public Pop[] GetSeries(int userId, string popSeries)
-        //{
-        //    Pop[] pops = Pops.Where(x => x.Series.Equals(popSeries)).ToArray();
-
-        //    return pops;
-        //}
     }
 }

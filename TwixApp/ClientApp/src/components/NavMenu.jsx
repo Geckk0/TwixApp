@@ -24,9 +24,9 @@ function NavMenu()  {
               </NavItem>
               {context.user ? 
               <Fragment>
-                {/* <NavItem>
+                <NavItem>
                   <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Pops">Pops</NavLink>
-                </NavItem> */}
+                </NavItem>
                 <NavItem>
                   <NavLink onClick={() => (updateContext({user: false}), setCollased(true))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
                 </NavItem>

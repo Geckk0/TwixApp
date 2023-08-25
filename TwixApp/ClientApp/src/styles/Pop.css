@@ -1,10 +1,17 @@
-form {
+.showcase {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  row-gap: 10px;
+  flex-wrap: wrap;
+}
+.showcase form {
   display: flex;
   flex-direction: column;
-  max-width: 450px;
-  min-width: 200px;
+  width: 200px;
 }
-form input {
+.showcase form input {
   height: 40px;
   max-height: 40px;
   max-width: 450px;
@@ -12,11 +19,12 @@ form input {
   border: none;
   border-bottom: 2px solid rgba(138, 225, 252, 0.6);
   transition: all 0.7s cubic-bezier(0.86, 0, 0.07, 1) 0s;
+  background-color: rgba(0, 0, 0, 0.1);
 }
-form input:focus {
+.showcase form input:focus {
   outline: none;
 }
-form .buttons {
+.showcase form .buttons {
   max-width: 450px;
   min-width: 100px;
   max-height: 40px;
@@ -27,21 +35,12 @@ form .buttons {
   align-items: center;
   flex-wrap: wrap;
 }
-form .buttons button {
+.showcase form .buttons button {
   width: 100px;
   height: 40px;
   border-radius: 10px;
   border: 2px solid rgba(138, 225, 252, 0.6);
   background-color: transparent;
-}
-
-.showcase {
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  justify-content: space-evenly;
-  row-gap: 10px;
-  flex-wrap: wrap;
 }
 .showcase .case {
   width: 200px;
@@ -52,8 +51,7 @@ form .buttons button {
   align-items: center;
 }
 .showcase .case img {
-  height: 200px;
-  width: max-content;
+  width: 200px;
 }
 .showcase .case .desc {
   width: 100%;

@@ -13,14 +13,14 @@ function About() {
     <article onClick={() => handleClose()} className={show ? "show-about about-popup" : "about-popup"} id="about-popup">
 
       <section className='about-head'>
-        <h3>About</h3>
+        <h3>More</h3>
       </section>
     
       <section>
         <h3>About me</h3>
         <p>My name is Jesper and I am a junior system developer.</p>
         <p>I spend most of my time playing with my dog or go out golfing when the weather is good.</p>
-        <p>Here is my CV: <a href={require("../files/CV.pdf")} download="CV_Jesper_Ljungdahl.pdf" rel="noopener noreferrer">CV.pdf</a></p>
+        <p>Here is my CV again: <a href="https://www.canva.com/design/DAEwlajoLk4/nft8vm50aWodjLfQTw2fvA/view?utm_content=DAEwlajoLk4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" target="_blank">CV</a></p>
       </section>
 
       <section>
@@ -31,7 +31,7 @@ function About() {
       </section>
 
       <section>
-        <h3>Aditional info</h3>
+        <h3>Additional info</h3>
         <p>I reccomend making up fake user details for safety if you want to try adding any pops.</p>
         <p>Passwords are hashed but I did not implement any authentication token yet.</p>
       </section>

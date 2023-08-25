@@ -6,6 +6,7 @@ function AddPop() {
   const [popName, setPopName] = useState("")
   const [number, setNumber] = useState(0)
   const [series, setSeries] = useState("")
+  const [imgUrl, setImgUrl] = useState("")
   const [fail, setFail] = useState(false)
   const [success, setSuccess] = useState(false)
   const [context, updateContext] = useContext(Context)
@@ -16,11 +17,11 @@ function AddPop() {
     setSuccess(false)
 
     //Add pop
-    await fetch("pop/" + popName + "/" + number)
+    await fetch("pop/" + popName + "/" + number + "/" + series + "/" + encodeURIComponent(imgUrl) + "/" + context.user.id, {method: "POST"})
     .then( response => !response.ok ? setFail("Pop could not be added") : response.json() )
     .then( data => {
       if(data){
-
+        console.log(data)
         setSuccess("Pop added")
       }
     })
@@ -29,6 +30,7 @@ function AddPop() {
   function submitButtonCheck(){
     if(popName.length <= 0) return true
     if(series.length <= 0) return true
+    if(imgUrl.length <= 0) return true
 
     return false
   }
@@ -44,6 +46,9 @@ function AddPop() {
 
       <input onChange={e => setSeries(e.target.value)} type="text" id="series" 
       placeholder='Pop series'/>
+
+      <input onChange={e => setImgUrl(e.target.value)} type="text" id="imgUrl" 
+      placeholder='Image link'/>
 
       <div className="buttons">
         <button disabled={submitButtonCheck()} className={submitButtonCheck() ? "failed" : "passed"}>Add</button> 

@@ -1,46 +1,5 @@
 @use 'generalStyles';
 
-form{
-    display: flex;
-    flex-direction: column;
-    max-width: 450px;
-    min-width: 200px;
-
-    input{
-        height: 40px;
-        max-height: 40px;
-        max-width: 450px;
-        margin: 15px 10px 0;
-        border: none;
-        border-bottom: 2px solid rgba(generalStyles.$light_Blue, 0.6);
-        transition: all .7s cubic-bezier(.86,0,.07,1) 0s;
-
-        &:focus{
-            outline: none;
-        }
-    }
-
-    .buttons{
-        max-width: 450px;
-        min-width: 100px;
-        max-height: 40px;
-        display: flex;
-        margin: 0;
-        padding: 10px;
-        justify-content: end;
-        align-items: center;
-        flex-wrap: wrap;
-        
-        button{
-            width: 100px;
-            height: 40px;
-            border-radius: 10px;
-            border: 2px solid rgba(generalStyles.$light_Blue, 0.6);
-            background-color: transparent;
-        }
-    }
-}
-
 .showcase{
     width: 100%;
     padding: 10px;
@@ -48,6 +7,47 @@ form{
     justify-content: space-evenly;
     row-gap: 10px;
     flex-wrap: wrap;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+
+        input{
+            height: 40px;
+            max-height: 40px;
+            max-width: 450px;
+            margin: 15px 10px 0;
+            border: none;
+            border-bottom: 2px solid rgba(generalStyles.$light_Blue, 0.6);
+            transition: all .7s cubic-bezier(.86,0,.07,1) 0s;
+            background-color: rgba(0, 0, 0, 0.1);
+
+            &:focus{
+                outline: none;
+            }
+        }
+
+        .buttons{
+            max-width: 450px;
+            min-width: 100px;
+            max-height: 40px;
+            display: flex;
+            margin: 0;
+            padding: 10px;
+            justify-content: end;
+            align-items: center;
+            flex-wrap: wrap;
+            
+            button{
+                width: 100px;
+                height: 40px;
+                border-radius: 10px;
+                border: 2px solid rgba(generalStyles.$light_Blue, 0.6);
+                background-color: transparent;
+            }
+        }
+    }
 
     .case{
         width: 200px;
@@ -58,8 +58,7 @@ form{
         align-items: center;
 
         img{
-            height: 200px;
-            width: max-content;
+            width: 200px;
         }
 
         .desc{

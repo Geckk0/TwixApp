@@ -12,6 +12,13 @@ function DevLog() {
         // title: "",
         // desc: ""},
 
+        {date: "25/08",
+        title: "Pops can be posted",
+        desc: "I have opened the pops section again and now it is possible to post pops to the site. \
+          It is not perfect yet and they are not removable either. \
+          Currently the POST for a new pop returns an error but the pop gets added, need to fix soon. \
+          Rating, sorting and other functions are coming soon."},
+
         {date: "24/08",
         title: "It has been published!",
         desc: "The website is not public to anyone with the link. I hope I can keep it up as long as I want to. \
