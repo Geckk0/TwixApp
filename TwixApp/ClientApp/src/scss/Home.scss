@@ -39,6 +39,7 @@ body:before {
     margin-left: 50px;
     color: white;
     transform: translateX(-100vw);
+    transition: margin-left .2s linear;
 }
 
 .fadeOut{ animation: 0.8s fadeOut 3s ease forwards; }
@@ -53,8 +54,22 @@ body:before {
     margin: 10px 0 10px 50px;
     opacity: 0;
     animation: 0.8s fadeIn 3s ease forwards;
+    transition: margin-left .2s linear;
+    
+    a{
+        color: black;
+        cursor: pointer;
+    }
 
     &:first-of-type{ margin-top: 30px; }
+}
+
+.cv-pointer{
+    width: 150px;
+    margin: -50px 0 0 90px;
+    opacity: 0;
+    animation: 0.8s fadeIn 4s ease forwards;
+    transition: margin-left .2s linear;
 }
 
 .box{
@@ -86,4 +101,5 @@ body:before {
 @media screen and (max-width: generalStyles.$small) {
     .welcome-text{ margin-left: 20px; }
     .intro-text{ margin-left: 20px; }
+    .cv-pointer{ margin-left: 40px; }
 }

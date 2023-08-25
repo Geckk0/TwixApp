@@ -17,22 +17,22 @@ function NavMenu()  {
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/Dev-log">Dev log</NavLink>
+                <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/About">About</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/Twix">Twix</NavLink>
+                <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Twix">Twix</NavLink>
               </NavItem>
               {context.user ? 
               <Fragment>
                 {/* <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/Pops">Pops</NavLink>
+                  <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Pops">Pops</NavLink>
                 </NavItem> */}
                 <NavItem>
-                  <NavLink onClick={() => updateContext({user: false})} tag={Link} className="text-dark" to="/">Sign out</NavLink>
+                  <NavLink onClick={() => (updateContext({user: false}), setCollased(true))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
                 </NavItem>
               </Fragment>:<Fragment>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/Connect">Sign in</NavLink>
+                  <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Connect">Sign in</NavLink>
                 </NavItem>
               </Fragment>}
             </ul>

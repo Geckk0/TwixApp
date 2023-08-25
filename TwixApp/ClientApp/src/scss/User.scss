@@ -28,6 +28,7 @@
             border: none;
             border-bottom: 2px solid rgba(generalStyles.$light_Blue, 0.6);
             transition: all .7s cubic-bezier(.86,0,.07,1) 0s;
+            background-color: rgba(0, 0, 0, 0.05);
 
             &:focus{
                 outline: none;

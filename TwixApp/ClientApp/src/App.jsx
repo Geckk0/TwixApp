@@ -28,7 +28,7 @@ function App() {
   return (
     <Context.Provider value={[contextVal, updateContext]}>
       <Layout>
-        <Route path='/Dev-log' component={DevLog} />
+        <Route path='/About' component={DevLog} />
         <Route path='/Twix' component={Twix} />
         <Route path='/Pops' component={Pops} />
         <Route path='/Connect' component={Connect} />
