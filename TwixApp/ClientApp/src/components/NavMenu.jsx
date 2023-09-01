@@ -22,13 +22,13 @@ function NavMenu()  {
               <NavItem>
                 <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Twix">Twix</NavLink>
               </NavItem>
-              {context.user ? 
+              {context.user.id > 0 ? 
               <Fragment>
                 <NavItem>
                   <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Pops">Pops</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink onClick={() => (updateContext({user: false}), setCollased(true))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
+                  <NavLink onClick={() => (updateContext({user: {id: 0, pops: {}}}), setCollased(true))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
                 </NavItem>
               </Fragment>:<Fragment>
                 <NavItem>

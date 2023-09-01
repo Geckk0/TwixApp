@@ -21,7 +21,10 @@ function AddPop() {
     .then( response => !response.ok ? setFail("Pop could not be added") : response.json() )
     .then( data => {
       if(data){
-        console.log(data)
+        let newUser = context.user
+        newUser.pops.push({...data, recent: true})
+        newUser.pops.sort(function(a, b){return a.number - b.number})
+        updateContext({user: newUser})
         setSuccess("Pop added")
       }
     })

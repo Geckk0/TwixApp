@@ -12,6 +12,13 @@ function DevLog() {
         // title: "",
         // desc: ""},
 
+        {date: "01/09",
+        title: "Handle your pops!",
+        desc: "After some trial and error the pops are now mostly working. \
+          After adding one to your collection you can not move it to your archive and remove it from your main collection, this does not delete your pop. \
+          When a pop is in your archive you then have the ability to bring it back to your collection or permenantly delete it. \
+          Saving pops can be usefull if you want to keep track of old pops you had before and get them back again."},
+
         {date: "25/08",
         title: "Pops can be posted",
         desc: "I have opened the pops section again and now it is possible to post pops to the site. \
@@ -23,11 +30,11 @@ function DevLog() {
         title: "It has been published!",
         desc: "The website is not public to anyone with the link. I hope I can keep it up as long as I want to. \
           Now I can finally return to adding new features I have planed. \
-          But untill further notice the 'Pops' section will be closed as I am still working on it."},
+          But until further notice the 'Pops' section will be closed as I am still working on it."},
 
         {date: "22/08",
         title: "Published the first verision",
-        desc: "The database, backend and frontend should all be up. It is not pupblically availiable yet but soon it will be. \
+        desc: "The database, backend and frontend should all be up. It is not publically availiable yet but soon it will be. \
           I still have some fixing to do before opening up to the public. Hopefully by the end of the week I'm done. \
           Now I need to add an API call to add and remove pops for the database and a UI for it."},
 

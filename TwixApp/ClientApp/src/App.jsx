@@ -15,7 +15,10 @@ export const Context = createContext()
 function App() {
   
   const [contextVal, setContext] = useState({
-    user: false
+    user: {
+      id: 0,
+      pops: []
+    }
   })
 
   function updateContext(updates) {

@@ -17,7 +17,7 @@ namespace TwixApp.Controllers
         public async Task<IActionResult> CreatePop(string popName, int number, string series, string imgUrl, int userId)
         {
             if(string.IsNullOrEmpty(popName) || string.IsNullOrEmpty(series) || string.IsNullOrEmpty(imgUrl)) return StatusCode(400, "All fields Required");
-            if (userId == 0) return StatusCode(201, "No user signed in");
+            if (userId == 0) return StatusCode(401, "No user signed in");
 
             string cleanUrl = HttpUtility.UrlDecode(imgUrl);
 
@@ -37,7 +37,42 @@ namespace TwixApp.Controllers
             _context.Pops.Add(newPop);
             _context.SaveChanges();
 
-            return Ok(newPop);
+            newPop.User = null;
+
+            return StatusCode(201, newPop);
+        }
+
+        [HttpPut("{popId}/{userId}")]
+        public async Task<IActionResult> ArchivePop(int popId, int userId)
+        {
+            if (userId == 0) return StatusCode(401, "No user signed in");
+
+            Pop pop = _context.Pops.Where(x => x.Id == popId && x.UserId == userId).FirstOrDefault();
+
+            if (pop == null) return StatusCode(404, "No pop found");
+
+            if (pop.DeletedAt == null) pop.DeletedAt = DateTime.Now;
+            else pop.DeletedAt = null;
+
+            _context.Pops.Update(pop);
+            _context.SaveChanges();
+
+            return StatusCode(200, "Pop updated");
+        }
+
+        [HttpDelete("{popId}/{userId}")]
+        public async Task<IActionResult> DeletePop(int popId, int userId)
+        {
+            if (userId == 0) return StatusCode(401, "No user signed in");
+
+            Pop pop = _context.Pops.Where(x => x.Id == popId && x.UserId == userId).FirstOrDefault();
+            
+            if (pop == null) return StatusCode(404, "No pop found");
+
+            _context.Pops.Remove(pop);
+            _context.SaveChanges();
+
+            return StatusCode(410, "Pop removed");
         }
     }
 }
