@@ -1,20 +1,25 @@
 import { useState, useContext } from 'react'
 import { Context } from '../App'
+import star from '../images/star-outline-svgrepo-com.svg'
+import goldStar from '../images/star-svgrepo-com.svg'
 import '../styles/Pop.css'
 
-function AddPop() {
+function AddPop({ updateList }) {
   const [popName, setPopName] = useState("")
   const [number, setNumber] = useState(0)
+  const [rating, setRating] = useState(1)
   const [series, setSeries] = useState("")
   const [imgUrl, setImgUrl] = useState("")
   const [fail, setFail] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [cooldown, setCooldown] = useState(false)
   const [context, updateContext] = useContext(Context)
 
   async function handleSubmit(e){
     e.preventDefault()
     setFail(false)
     setSuccess(false)
+    setCooldown(true)
 
     //Add pop
     await fetch("pop/" + popName + "/" + number + "/" + series + "/" + encodeURIComponent(imgUrl) + "/" + context.user.id, {method: "POST"})
@@ -26,8 +31,10 @@ function AddPop() {
         newUser.pops.sort(function(a, b){return a.number - b.number})
         updateContext({user: newUser})
         setSuccess("Pop added")
+        updateList("")
       }
     })
+    setCooldown(false)
   }
 
   function submitButtonCheck(){
@@ -53,10 +60,17 @@ function AddPop() {
       <input onChange={e => setImgUrl(e.target.value)} type="text" id="imgUrl" 
       placeholder='Image link'/>
 
-      <div className="buttons">
-        <button disabled={submitButtonCheck()} className={submitButtonCheck() ? "failed" : "passed"}>Add</button> 
+      <div className='star-container'>
+        {[...Array(rating-0)].map((x, i) => <img src={goldStar} key={i}/>)}
+        {[...Array(5-rating)].map((x, i) => <img src={star} key={i}/>)}
+
+        <input onChange={e => setRating(e.target.value)} type="range" id="rating" 
+        min={0} max={5} step={1} defaultValue={rating}/>
       </div>
 
+      <div className="buttons">
+        <button disabled={(submitButtonCheck() || cooldown)} className={submitButtonCheck() ? "failed" : "passed"}>Add</button> 
+      </div>
     </form>
   );
 }

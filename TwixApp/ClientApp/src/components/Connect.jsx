@@ -10,7 +10,7 @@ function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [repeatPassword, setRepeatPassword] = useState("")
-  const [fail, setFail] = useState(false)
+  const [fail, setFail] = useState("The server can take 3-4 minutes to wake up. Please be patient.")
   const [success, setSuccess] = useState(false)
 
   const history = useHistory()

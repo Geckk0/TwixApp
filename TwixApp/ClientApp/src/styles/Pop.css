@@ -9,6 +9,7 @@
 .showcase input {
   height: 40px;
   max-height: 40px;
+  width: 200px;
   max-width: 200px;
   margin-top: 10px;
   border: none;
@@ -40,6 +41,51 @@
   flex-direction: column;
   width: 200px;
   height: 350px;
+}
+.showcase form .star-container {
+  display: flex;
+  align-items: center;
+}
+.showcase form .star-container img {
+  max-width: 20%;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+.showcase form .star-container input {
+  position: absolute;
+}
+.showcase form .star-container input::-webkit-slider-runnable-track {
+  margin: 5px;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  height: 40px;
+}
+.showcase form .star-container input::-moz-range-track {
+  margin: 5px;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  height: 40px;
+}
+.showcase form .star-container input::-ms-track {
+  margin: 5px;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  height: 40px;
+}
+.showcase form .star-container input::-webkit-slider-thumb {
+  border: none;
+  background-color: transparent;
+}
+.showcase form .star-container input::-moz-range-thumb {
+  border: none;
+  background-color: transparent;
+}
+.showcase form .star-container input::-ms-thumb {
+  border: none;
+  background-color: transparent;
 }
 .showcase form .buttons {
   max-width: 200px;

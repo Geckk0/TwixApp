@@ -62,6 +62,7 @@ function Pops() {
   }
 
   function searchPop(searchQuery){
+    console.log("updating")
     if(searchQuery.length > 2){ //toUpperCase is not an ideal solution but localeCompare does not want to work
       if(showArchived) setShowList(fullList.filter( x => x.deletedAt != null && x.name.toUpperCase().includes(searchQuery.toUpperCase())))
       else setShowList(fullList.filter( x => x.deletedAt == null && x.name.toUpperCase().includes(searchQuery.toUpperCase())))
@@ -81,7 +82,7 @@ function Pops() {
         {!showArchived && <button onClick={() => setShowAddSquare(!showAddSquare)}>Add new pops</button>}
         <button onClick={() => switchPopList()}>{showArchived ? "See your collection" : "See archived pops"}</button>
       </div>
-      {!showArchived && showAddSquare && <AddPop />}
+      {!showArchived && showAddSquare && <AddPop updateList={searchPop}/>}
 
       {(showList.length > 0) ? showList.map((pop) => 
         <div key={pop.id} className="case">
