@@ -22,7 +22,7 @@ function AddPop({ updateList }) {
     setCooldown(true)
 
     //Add pop
-    await fetch("pop/" + popName + "/" + number + "/" + series + "/" + encodeURIComponent(imgUrl) + "/" + context.user.id, {method: "POST"})
+    await fetch("pop/" + popName + "/" + number + "/" + series + "/" + rating + "/" + encodeURIComponent(imgUrl) + "/" + context.user.id, {method: "POST"})
     .then( response => !response.ok ? setFail("Pop could not be added") : response.json() )
     .then( data => {
       if(data){
@@ -71,6 +71,9 @@ function AddPop({ updateList }) {
       <div className="buttons">
         <button disabled={(submitButtonCheck() || cooldown)} className={submitButtonCheck() ? "failed" : "passed"}>Add</button> 
       </div>
+        
+      {fail && <h5 className='status-msg failed'>{fail}</h5>}
+      {success && <h5 className='status-msg passed'>{success}</h5>}
     </form>
   );
 }

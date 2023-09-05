@@ -13,8 +13,8 @@ namespace TwixApp.Controllers
             _context = context;
         }
 
-        [HttpPost("{popName}/{number}/{series}/{imgUrl}/{userId}")]
-        public async Task<IActionResult> CreatePop(string popName, int number, string series, string imgUrl, int userId)
+        [HttpPost("{popName}/{number}/{series}/{rating}/{imgUrl}/{userId}")]
+        public async Task<IActionResult> CreatePop(string popName, int number, string series, int rating, string imgUrl, int userId)
         {
             if(string.IsNullOrEmpty(popName) || string.IsNullOrEmpty(series) || string.IsNullOrEmpty(imgUrl)) return StatusCode(400, "All fields Required");
             if (userId == 0) return StatusCode(401, "No user signed in");
@@ -29,6 +29,7 @@ namespace TwixApp.Controllers
             newPop.Name = popName;
             newPop.Number = number;
             newPop.Series = series;
+            newPop.Rating = rating;
             newPop.ImgUrl = cleanUrl;
             newPop.UserId = user.Id;
 

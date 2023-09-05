@@ -47,6 +47,10 @@
         width: 200px;
         height: 350px;
 
+        .passed{ background-image: linear-gradient(to left, transparent, rgba(lightGreen, 0.4)); }
+        .failed{ background-image: linear-gradient(to left, transparent, rgba(red, 0.15)); }
+        h5{ padding: 5px; margin: 0px;}
+
         .star-container{
             display: flex;
             align-items: center;
@@ -88,8 +92,7 @@
             min-width: 100px;
             max-height: 40px;
             display: flex;
-            margin: 0;
-            padding: 10px;
+            margin: 10px 0px;
             justify-content: end;
             align-items: center;
             flex-wrap: wrap;
@@ -114,6 +117,13 @@
 
         img{
             width: 200px;
+        }
+
+        .rating-container{
+
+            img{ 
+                width: 20px; 
+            }
         }
 
         .desc{

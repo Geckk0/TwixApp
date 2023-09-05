@@ -42,6 +42,16 @@
   width: 200px;
   height: 350px;
 }
+.showcase form .passed {
+  background-image: linear-gradient(to left, transparent, rgba(144, 238, 144, 0.4));
+}
+.showcase form .failed {
+  background-image: linear-gradient(to left, transparent, rgba(255, 0, 0, 0.15));
+}
+.showcase form h5 {
+  padding: 5px;
+  margin: 0px;
+}
 .showcase form .star-container {
   display: flex;
   align-items: center;
@@ -92,8 +102,7 @@
   min-width: 100px;
   max-height: 40px;
   display: flex;
-  margin: 0;
-  padding: 10px;
+  margin: 10px 0px;
   justify-content: end;
   align-items: center;
   flex-wrap: wrap;
@@ -115,6 +124,9 @@
 }
 .showcase .case img {
   width: 200px;
+}
+.showcase .case .rating-container img {
+  width: 20px;
 }
 .showcase .case .desc {
   width: 100%;

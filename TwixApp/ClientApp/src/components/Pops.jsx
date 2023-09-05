@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { Context } from '../App'
 import { useHistory } from 'react-router-dom'
 import AddPop from './AddPop'
+import AddDisplay from './PopsDisplay'
 import '../styles/Pop.css'
 
 function Pops() {
@@ -62,15 +63,22 @@ function Pops() {
   }
 
   function searchPop(searchQuery){
-    console.log("updating")
+    let newShowList = [...fullList] //Re-create list without refrence to original
+
+    if(showArchived) newShowList = newShowList.filter( x => x.deletedAt != null)
+    else newShowList = newShowList.filter( x => x.deletedAt == null)
+
     if(searchQuery.length > 2){ //toUpperCase is not an ideal solution but localeCompare does not want to work
-      if(showArchived) setShowList(fullList.filter( x => x.deletedAt != null && x.name.toUpperCase().includes(searchQuery.toUpperCase())))
-      else setShowList(fullList.filter( x => x.deletedAt == null && x.name.toUpperCase().includes(searchQuery.toUpperCase())))
+      newShowList = newShowList.filter( x => 
+        x.name.toUpperCase().includes(searchQuery.toUpperCase()) ||
+        x.series.toUpperCase().includes(searchQuery.toUpperCase())
+      )
     }
-    else{
-      if(showArchived) setShowList(fullList.filter( x => x.deletedAt != null).sort(function(a, b){return a.number - b.number}))
-      else setShowList(fullList.filter( x => x.deletedAt == null).sort(function(a, b){return a.number - b.number}))  
+    else if(!isNaN(searchQuery)){
+      newShowList = newShowList.filter( x => +x.number.toString().includes(searchQuery))
     }
+
+    setShowList(newShowList)
   }
     
 
@@ -85,26 +93,18 @@ function Pops() {
       {!showArchived && showAddSquare && <AddPop updateList={searchPop}/>}
 
       {(showList.length > 0) ? showList.map((pop) => 
-        <div key={pop.id} className="case">
-          <img src={pop.imgUrl} />
-          <div className="desc">
-            {pop.number != 0 ? <p>{pop.number}</p> : <p> --</p>}
-            <p>{pop.name}</p>
-            <p>{pop.series}</p>
-          </div>
-          {pop.recent ? <div className="new-pop">New!</div> : undefined}
-          {pop.deletedAt ? <>
-              <button className="pop-buttons" onClick={() => updateArchiveState(pop.id, false)} 
-              data-tooltip="Add the pop to your collection again">Add back</button>
-              <button className="pop-buttons" onClick={() => deletePop(pop.id)}
-              data-tooltip="Permanently remove the pop">Delete</button>
-            </>
-          : <>
-              <button className="pop-buttons" onClick={() => updateArchiveState(pop.id, true)}
-              data-tooltip="Remove the pop from your current collection and save it in your archives">Archive</button>
-              <button className="pop-buttons" style={{textDecoration: "line-through"}}>Edit</button>
-            </>}
-        </div>)
+      <AddDisplay 
+        id={pop.id}
+        imgUrl={pop.imgUrl}
+        number={pop.number}
+        name={pop.name}
+        series={pop.series}
+        rating={pop.rating}
+        recent={pop.recent}
+        deletedAt={pop.deletedAt}
+        updateArchiveState={updateArchiveState}
+        deletePop={deletePop}
+      />)
       :
       <div className="case">
         <img src="https://m.media-amazon.com/images/I/61CE398OACL.__AC_SY300_SX300_QL70_ML2_.jpg" />
