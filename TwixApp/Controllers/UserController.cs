@@ -12,14 +12,16 @@ namespace TwixApp.Controllers
             _context = context;
         }
 
-        [HttpGet("{username}")]
-        public async Task<IActionResult> CheckUsername(string username)
+        [HttpGet("{userToken}")]
+        public async Task<IActionResult> CheckUserToken(string userToken)
         {
-            User user = new User();
+            if (AuthHandler.VerifyToken(userToken, null)) return StatusCode(401, "Unautorised");
 
-            user = await _context.Users.Where(x => x.Username.Equals(username)).FirstOrDefaultAsync();
+            int userId = AuthHandler.GetUserFromToken(userToken);
 
-            if (user != null) return StatusCode(409, "Username taken");
+            User user = await _context.Users.Where(x => x.Id.Equals(userId)).FirstOrDefaultAsync();
+
+            if (user == null) return StatusCode(404, "No user found");
 
             return Ok();
         }
@@ -36,7 +38,8 @@ namespace TwixApp.Controllers
             if (user.DeletedAt != null) return Ok("Not active account");
 
             foreach (var x in user.Pops) x.User = null;
-            user.Password = null;
+
+            user.Password = AuthHandler.CreateToken(user.Id);
 
             return Ok(user);
         }
@@ -46,6 +49,7 @@ namespace TwixApp.Controllers
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password)) return StatusCode(400, "All fields Required");
             if (_context.Users.Any(x => x.Email == email)) return StatusCode(409, "Email already used");
+            if (_context.Users.Any(x => x.Username == username)) return StatusCode(409, "Username taken");
 
             User user = new User();
 

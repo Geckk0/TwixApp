@@ -26,42 +26,30 @@ function Login() {
       .then( data => {
         if(data){
           updateContext({user: data})
+          localStorage.setItem("token", data.password)
           history.push('/')
         }
       })
     }
     else{ //Create user
-      var freeUsername = true
-      
-      await fetch("user/" + username)//Check if username is taken
+      await fetch("user/" + username + "/" + email + "/" + password, {method:  'POST'})
       .then( response => {
-        if(!response.ok){
-          setFail("Username taken")
-          freeUsername = false;
+        if( !response.ok ){ 
+          if( response.status == 400 ) setFail("All fields requireds")
+          else setFail("Email already used")
         }
-      })   
-
-      if (freeUsername){//Create our user
-        
-        await fetch("user/" + username + "/" + email + "/" + password, {method:  'POST'})
-        .then( response => {
-          if( !response.ok ){ 
-            if( response.status == 400 ) setFail("All fields requireds")
-            else setFail("Email already used")
-          }
-          else {
-            setSuccess("User created")
-            setStage(1)
-            
-            setTimeout(() => {
-              setEmail("")
-              document.getElementById("email").value = ""
-              setRepeatPassword("")
-              document.getElementById("repeatPassword").value = ""
-            }, 500)
-          }
-        })
-      } 
+        else {
+          setSuccess("User created")
+          setStage(1)
+          
+          setTimeout(() => {
+            setEmail("")
+            document.getElementById("email").value = ""
+            setRepeatPassword("")
+            document.getElementById("repeatPassword").value = ""
+          }, 500)
+        }
+      })
     }
   }
 

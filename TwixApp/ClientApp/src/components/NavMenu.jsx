@@ -1,4 +1,4 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../App';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,22 @@ import '../styles/NavMenu.css';
 function NavMenu()  {
   const [context, updateContext] = useContext(Context)
   const [collapsed, setCollased] = useState(true)
+
+  useEffect(() => {
+    var token = localStorage.getItem("token", context.user.password)
+    if(token){
+      const fetchData = async () => {await fetch("user/" + token)
+        .then( response => !response.ok ? console.log(response) : response.json() )
+        .then( data => {
+          if(data){
+            localStorage.setItem("token", data.password)
+          }
+        })
+      }
+
+      fetchData()
+    }
+  }, [])
 
   return (
     <header>
@@ -23,18 +39,18 @@ function NavMenu()  {
                 <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Twix">Twix</NavLink>
               </NavItem>
               {context.user.id > 0 ? 
-              <Fragment>
+              <>
                 <NavItem>
                   <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Pops">Pops</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink onClick={() => (updateContext({user: {id: 0, pops: {}}}), setCollased(true))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
+                  <NavLink onClick={() => (updateContext({user: {id: 0, pops: {}}}), setCollased(true), localStorage.setItem("token", null))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
                 </NavItem>
-              </Fragment>:<Fragment>
+              </>:<>
                 <NavItem>
                   <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Connect">Sign in</NavLink>
                 </NavItem>
-              </Fragment>}
+              </>}
             </ul>
           </Collapse>
         </Container>
