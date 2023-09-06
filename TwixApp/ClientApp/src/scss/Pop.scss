@@ -93,7 +93,7 @@
             max-height: 40px;
             display: flex;
             margin: 10px 0px;
-            justify-content: end;
+            justify-content: flex-end;
             align-items: center;
             flex-wrap: wrap;
             
@@ -141,9 +141,9 @@
             }
 
             p:first-of-type{
-                margin-top: -33px; margin-right: -7px;
+                margin-top: -30px; margin-right: -7px;
                 padding: 0 5px;
-                align-self: end;            
+                align-self: flex-end;            
                 background-image: linear-gradient(rgba(255,0,0,0), rgba(generalStyles.$light_Blue,0.5));
 
             }

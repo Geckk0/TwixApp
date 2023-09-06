@@ -26,14 +26,14 @@ function About() {
       <section>
         <h3>About this site</h3>
         <p>Work on this site is irregular and mostly when I feel inspiration.</p>
-        <p>This is a React web app using functional components. And the backend is written in C#.</p>
+        <p>This is a React web app using functional components. The backend is written in C#.</p>
         <p>Originally this was a private site for me to collect pictures of my dog and my pops.</p>
       </section>
 
       <section>
-        <h3>Additional info</h3>
-        <p>I reccomend making up fake user details for safety if you want to try adding any pops.</p>
-        <p>Passwords are hashed but I did not implement any authentication token yet.</p>
+        <h3>Security recommendations</h3>
+        <p>I recommend making up fake user details for safety if you want to create an account.</p>
+        <p>Passwords are hashed but I still recommend using fake user detais.</p>
       </section>
 
     </article>

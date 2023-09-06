@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
 }
 
 .twix1 *{
@@ -262,7 +263,7 @@
 
     @media screen and (max-width: generalStyles.$small){
         flex-direction: column;
-        height: 800px;
+        min-height: 800px;
         align-items: center;
 
         .fifty{ width: 90%;}
@@ -283,7 +284,7 @@
         .left-rotate{ transform: rotate(135deg); }
         .right-rotate{ transform: rotate(-45deg); }
 
-        .divider{ margin: 30px 0; }
+        .divider{ margin: 30px 0; min-height: 250px; }
 
         .left-btn-container{ margin: 10px 0 -30px 0; }
         .right-btn-1{ margin: -20px 0 0 30%; }

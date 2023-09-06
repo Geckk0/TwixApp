@@ -74,9 +74,12 @@ namespace TwixApp.Controllers
             return StatusCode(201, "User created");
         }
 
-        [HttpDelete("{userId}/{hard}")]
-        public async Task<ObjectResult> SoftDeleteUser(int userId, bool hard)
+        [HttpDelete("{userId}/{hard}/{userToken}")]
+        public async Task<ObjectResult> SoftDeleteUser(int userId, bool hard, string userToken)
         {
+
+            if (!AuthHandler.VerifyToken(userToken, userId)) return StatusCode(401, "Bad token");
+
             User user = await _context.Users.Where(x => x.Id == userId).FirstOrDefaultAsync();
             
             if (hard)

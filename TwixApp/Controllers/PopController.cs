@@ -13,11 +13,13 @@ namespace TwixApp.Controllers
             _context = context;
         }
 
-        [HttpPost("{popName}/{number}/{series}/{rating}/{imgUrl}/{userId}")]
-        public async Task<IActionResult> CreatePop(string popName, int number, string series, int rating, string imgUrl, int userId)
+        [HttpPost("{popName}/{number}/{series}/{rating}/{imgUrl}/{userId}/{userToken}")]
+        public async Task<IActionResult> CreatePop(string popName, int number, string series, int rating, int userId, string userToken, string imgUrl)
         {
             if(string.IsNullOrEmpty(popName) || string.IsNullOrEmpty(series) || string.IsNullOrEmpty(imgUrl)) return StatusCode(400, "All fields Required");
             if (userId == 0) return StatusCode(401, "No user signed in");
+
+            if (!AuthHandler.VerifyToken(userToken, userId)) return StatusCode(401, "Bad token");
 
             string cleanUrl = HttpUtility.UrlDecode(imgUrl);
 
@@ -43,10 +45,12 @@ namespace TwixApp.Controllers
             return StatusCode(201, newPop);
         }
 
-        [HttpPut("{popId}/{userId}")]
-        public async Task<IActionResult> ArchivePop(int popId, int userId)
+        [HttpPut("{popId}/{userId}/{userToken}")]
+        public async Task<IActionResult> ArchivePop(int popId, int userId, string userToken)
         {
             if (userId == 0) return StatusCode(401, "No user signed in");
+
+            if (!AuthHandler.VerifyToken(userToken, userId)) return StatusCode(401, "Bad token");
 
             Pop pop = _context.Pops.Where(x => x.Id == popId && x.UserId == userId).FirstOrDefault();
 
@@ -61,10 +65,12 @@ namespace TwixApp.Controllers
             return StatusCode(200, "Pop updated");
         }
 
-        [HttpDelete("{popId}/{userId}")]
-        public async Task<IActionResult> DeletePop(int popId, int userId)
+        [HttpDelete("{popId}/{userId}/{userToken}")]
+        public async Task<IActionResult> DeletePop(int popId, int userId, string userToken)
         {
             if (userId == 0) return StatusCode(401, "No user signed in");
+
+            if (!AuthHandler.VerifyToken(userToken, userId)) return StatusCode(401, "Bad token");
 
             Pop pop = _context.Pops.Where(x => x.Id == popId && x.UserId == userId).FirstOrDefault();
             

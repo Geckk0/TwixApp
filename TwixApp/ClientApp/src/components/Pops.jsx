@@ -20,13 +20,13 @@ function Pops() {
 
   async function updateArchiveState(popId, archive){
     //Update the deleted value for pop
-    await fetch("pop/" + popId + "/" + context.user.id, {method: "PUT"})
+    await fetch("pop/" + popId + "/" + context.user.id + "/" + context.user.password, {method: "PUT"})
     .then( response => {if(response.ok) 
       {
         let newUser = context.user
         newUser.pops.map(x => {
-          if(x.id == popId && archive) x.deletedAt = new Date().toLocaleString
-          else if(x.id == popId && !archive) x.deletedAt = null
+          if(x.id === popId && archive) x.deletedAt = new Date().toLocaleString
+          else if(x.id === popId && !archive) x.deletedAt = null
         })
         newUser.pops.sort(function(a, b){return a.number - b.number})
         updateContext({user: newUser})
@@ -40,11 +40,11 @@ function Pops() {
   async function deletePop(popId){
     if(window.confirm("This will permanently remove the pop")){
       //Permanently delete pop
-      await fetch("pop/" + popId + "/" + context.user.id, {method: "DELETE"})
-      .then( response => {if(response.status == 410)
+      await fetch("pop/" + popId + "/" + context.user.id + "/" + context.user.password, {method: "DELETE"})
+      .then( response => {if(response.status === 410)
         {
           let newUser = context.user
-          newUser.pops = newUser.pops.filter( x => x.id != popId )
+          newUser.pops = newUser.pops.filter( x => x.id !== popId )
           updateContext({user: newUser})
           setFullList(newUser.pops)
           if(showArchived) setShowList(newUser.pops.filter( x => x.deletedAt != null))
@@ -107,7 +107,7 @@ function Pops() {
       />)
       :
       <div className="case">
-        <img src="https://m.media-amazon.com/images/I/61CE398OACL.__AC_SY300_SX300_QL70_ML2_.jpg" />
+        <img src="https://m.media-amazon.com/images/I/61CE398OACL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="Pop display"/>
         <div className="desc">
           <p>01</p>
           <p>Example pop</p>

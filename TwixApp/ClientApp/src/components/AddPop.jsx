@@ -22,7 +22,7 @@ function AddPop({ updateList }) {
     setCooldown(true)
 
     //Add pop
-    await fetch("pop/" + popName + "/" + number + "/" + series + "/" + rating + "/" + encodeURIComponent(imgUrl) + "/" + context.user.id, {method: "POST"})
+    await fetch("pop/" + popName + "/" + number + "/" + series + "/" + rating + "/" + encodeURIComponent(imgUrl) + "/" + context.user.id + "/" + context.user.password, {method: "POST"})
     .then( response => !response.ok ? setFail("Pop could not be added") : response.json() )
     .then( data => {
       if(data){
@@ -61,8 +61,8 @@ function AddPop({ updateList }) {
       placeholder='Image link'/>
 
       <div className='star-container'>
-        {[...Array(rating-0)].map((x, i) => <img src={goldStar} key={i}/>)}
-        {[...Array(5-rating)].map((x, i) => <img src={star} key={i}/>)}
+        {[...Array(rating-0)].map((x, i) => <img src={goldStar} key={i} alt='Star'/>)}
+        {[...Array(5-rating)].map((x, i) => <img src={star} key={i} alt=''/>)}
 
         <input onChange={e => setRating(e.target.value)} type="range" id="rating" 
         min={0} max={5} step={1} defaultValue={rating}/>
