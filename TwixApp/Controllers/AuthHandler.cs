@@ -18,15 +18,15 @@ namespace TwixApp.Controllers
             int[] userIdPositions = new int[6];
 
             int tokenType = random.Next(4);
-            string dateTime = DateTime.UtcNow.ToString();//Set culture for same formating
+            string dateTime = DateTime.UtcNow.ToString(new CultureInfo("en-GB"));//Set culture for same formating
             var dateChar = dateTime.ToCharArray();
 
             switch (tokenType)
             {
                 case 0:
-                    tokenChar[4] = dateChar[8]; tokenChar[52] = dateChar[9];//Input day
-                    tokenChar[32] = dateChar[5]; tokenChar[12] = dateChar[6];//Input month
-                    tokenChar[53] = dateChar[2]; tokenChar[41] = dateChar[3];//Input year
+                    tokenChar[4] = dateChar[0]; tokenChar[52] = dateChar[1];//Input day
+                    tokenChar[32] = dateChar[3]; tokenChar[12] = dateChar[4];//Input month
+                    tokenChar[53] = dateChar[8]; tokenChar[41] = dateChar[9];//Input year
                     tokenChar[34] = dateChar[11]; tokenChar[8] = dateChar[12];//Input hour
                     tokenChar[5] = tokenType.ToString().ToCharArray()[0];//Input type of token creation
                     tokenChar[43] = userIdLength.ToString().ToCharArray()[0];//Input length of userId
@@ -39,9 +39,9 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 1:
-                    tokenChar[6] = dateChar[8]; tokenChar[62] = dateChar[9];
-                    tokenChar[53] = dateChar[5]; tokenChar[2] = dateChar[6];
-                    tokenChar[23] = dateChar[2]; tokenChar[34] = dateChar[3];
+                    tokenChar[6] = dateChar[0]; tokenChar[62] = dateChar[1];
+                    tokenChar[53] = dateChar[3]; tokenChar[2] = dateChar[4];
+                    tokenChar[23] = dateChar[8]; tokenChar[34] = dateChar[9];
                     tokenChar[44] = dateChar[11]; tokenChar[60] = dateChar[12];
                     tokenChar[5] = tokenType.ToString().ToCharArray()[0];
                     tokenChar[11] = userIdLength.ToString().ToCharArray()[0];
@@ -54,9 +54,9 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 2:
-                    tokenChar[35] = dateChar[8]; tokenChar[51] = dateChar[9];
-                    tokenChar[54] = dateChar[5]; tokenChar[33] = dateChar[6];
-                    tokenChar[62] = dateChar[2]; tokenChar[61] = dateChar[3];
+                    tokenChar[35] = dateChar[0]; tokenChar[51] = dateChar[1];
+                    tokenChar[54] = dateChar[3]; tokenChar[33] = dateChar[4];
+                    tokenChar[62] = dateChar[8]; tokenChar[61] = dateChar[9];
                     tokenChar[23] = dateChar[11]; tokenChar[32] = dateChar[12];
                     tokenChar[5] = tokenType.ToString().ToCharArray()[0];
                     tokenChar[48] = userIdLength.ToString().ToCharArray()[0];
@@ -69,9 +69,9 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 3:
-                    tokenChar[36] = dateChar[8]; tokenChar[35] = dateChar[9];
-                    tokenChar[60] = dateChar[5]; tokenChar[24] = dateChar[6];
-                    tokenChar[63] = dateChar[2]; tokenChar[54] = dateChar[3];
+                    tokenChar[36] = dateChar[0]; tokenChar[35] = dateChar[1];
+                    tokenChar[60] = dateChar[3]; tokenChar[24] = dateChar[4];
+                    tokenChar[63] = dateChar[8]; tokenChar[54] = dateChar[9];
                     tokenChar[13] = dateChar[11]; tokenChar[1] = dateChar[12];
                     tokenChar[5] = tokenType.ToString().ToCharArray()[0];
                     tokenChar[37] = userIdLength.ToString().ToCharArray()[0];
