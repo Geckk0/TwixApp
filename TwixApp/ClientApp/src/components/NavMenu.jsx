@@ -7,11 +7,9 @@ import '../styles/NavMenu.css';
 function NavMenu()  {
   const [context, updateContext] = useContext(Context)
   const [collapsed, setCollased] = useState(true)
+  const [token] = useState(localStorage.getItem("token") || "nousertoken")//Collect token from storage if there is one
 
   useEffect(() => {
-    var token = localStorage.getItem("token") //Collect token from storage if there is one
-    if(!token) token ="nousertoken" //Let's just poke the server to wake it up in case it is sleeping
-
     const fetchData = async () => {await fetch("user/" + token) //Check token and collect user
       .then( response => !response.ok ? undefined : response.json() )
       .then( data => {
