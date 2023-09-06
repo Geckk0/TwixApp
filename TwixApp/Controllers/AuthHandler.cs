@@ -20,7 +20,6 @@ namespace TwixApp.Controllers
             int tokenType = random.Next(4);
             string dateTime = DateTime.UtcNow.ToString();//Set culture for same formating
             var dateChar = dateTime.ToCharArray();
-            HashSet<char> set = new();
 
             switch (tokenType)
             {
@@ -93,22 +92,22 @@ namespace TwixApp.Controllers
 
         public static bool VerifyToken(string token, int ?userId)
         {
-            if (token == null || token.Length != 64) return false;
 
-            char[] tokenChar = token.ToCharArray();
-            int tokenType = tokenChar[5];
-            string day = "00", month = "00", year = "00", hour = "00", dateString;
-            int userIdLength, tokenUserId = 0;
+            var tokenChar = token.ToCharArray();
+            int tokenType = int.Parse(tokenChar[5].ToString());
+            char[] day = new char[2], month = new char[2], year = new char[2], hour = new char[2];
+            string dateString;
+            int userIdLength = 0, tokenUserId = 0;
             int[] userIdPositions = new int[6];
 
             switch (tokenType)
             {
                 case 0:
-                    day = tokenChar[4].ToString() + tokenChar[52].ToString();//Extract day
-                    month = tokenChar[32].ToString() + tokenChar[12].ToString();//Extract month
-                    year = tokenChar[53].ToString() + tokenChar[41].ToString();//Extract year
-                    hour = tokenChar[34].ToString() + tokenChar[8].ToString();//Extract hour
-                    userIdLength = tokenChar[43];//Extract length of userId 
+                    day[0] = tokenChar[4]; day[1] = tokenChar[52];//Extract day
+                    month[0] = tokenChar[32]; month[1] = tokenChar[12];//Extract month
+                    year[0] = tokenChar[53]; year[1] = tokenChar[41];//Extract year
+                    hour[0] = tokenChar[34]; hour[1] = tokenChar[8];//Extract hour
+                    userIdLength = int.Parse(tokenChar[43].ToString());//Extract length of userId 
                     userIdPositions[0] = 23; userIdPositions[1] = 55; userIdPositions[2] = 43; userIdPositions[3] = 12; userIdPositions[4] = 6; userIdPositions[5] = 3;//positions for userId
 
                     for (int i = 0; i < userIdLength; i++)
@@ -117,11 +116,11 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 1:
-                    day = tokenChar[6].ToString() + tokenChar[62].ToString();
-                    month = tokenChar[53].ToString() + tokenChar[2].ToString();
-                    year = tokenChar[23].ToString() + tokenChar[34].ToString();
-                    hour = tokenChar[44].ToString() + tokenChar[60].ToString();
-                    userIdLength = tokenChar[11];
+                    day[0] = tokenChar[6]; day[1] = tokenChar[62];
+                    month[0] = tokenChar[53]; month[1] = tokenChar[2];
+                    year[0] = tokenChar[23]; year[1] = tokenChar[34];
+                    hour[0] = tokenChar[44]; hour[1] = tokenChar[60];
+                    userIdLength = int.Parse(tokenChar[11].ToString());
                     userIdPositions[0] = 54; userIdPositions[1] = 42; userIdPositions[2] = 24; userIdPositions[3] = 32; userIdPositions[4] = 49; userIdPositions[5] = 20;
 
                     for (int i = 0; i < userIdLength; i++)
@@ -130,11 +129,11 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 2:
-                    day = tokenChar[35].ToString() + tokenChar[51].ToString();
-                    month = tokenChar[54].ToString() + tokenChar[33].ToString();
-                    year = tokenChar[62].ToString() + tokenChar[64].ToString();
-                    hour = tokenChar[23].ToString() + tokenChar[32].ToString();
-                    userIdLength = tokenChar[48];
+                    day[0] = tokenChar[35]; day[1] = tokenChar[51];
+                    month[0] = tokenChar[54]; month[1] = tokenChar[33];
+                    year[0] = tokenChar[62]; year[1] = tokenChar[58];
+                    hour[0] = tokenChar[23]; hour[1] = tokenChar[32];
+                    userIdLength = int.Parse(tokenChar[48].ToString());
                     userIdPositions[0] = 57; userIdPositions[1] = 36; userIdPositions[2] = 28; userIdPositions[3] = 61; userIdPositions[4] = 37; userIdPositions[5] = 42;
 
                     for (int i = 0; i < userIdLength; i++)
@@ -143,11 +142,11 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 3:
-                    day = tokenChar[36].ToString() + tokenChar[35].ToString();
-                    month = tokenChar[60].ToString() + tokenChar[24].ToString();
-                    year = tokenChar[63].ToString() + tokenChar[54].ToString();
-                    hour = tokenChar[13].ToString() + tokenChar[1].ToString();
-                    userIdLength = tokenChar[37];
+                    day[0] = tokenChar[36]; day[1] = tokenChar[35];
+                    month[0] = tokenChar[60]; month[1] = tokenChar[24];
+                    year[0] = tokenChar[63]; year[1] = tokenChar[54];
+                    hour[0] = tokenChar[13]; hour[1] = tokenChar[1];
+                    userIdLength = int.Parse(tokenChar[37].ToString());
                     userIdPositions[0] = 45; userIdPositions[1] = 48; userIdPositions[2] = 52; userIdPositions[3] = 29; userIdPositions[4] = 30; userIdPositions[5] = 9;
 
                     for (int i = 0; i < userIdLength; i++)
@@ -157,7 +156,7 @@ namespace TwixApp.Controllers
                     break;
             }
 
-            dateString = $"{day} {month} {year} {hour}:00";
+            dateString = $"{new string(year)} {new string(month)} {new string(day)} {new string(hour)}:00";
             DateTime dateTime = DateTime.Parse(dateString);
             DateTime currentDateTime = DateTime.UtcNow;
 
@@ -175,7 +174,7 @@ namespace TwixApp.Controllers
         public static int GetUserFromToken(string token)
         {
             var tokenChar = token.ToCharArray();
-            int tokenType = tokenChar[5];
+            int tokenType = int.Parse(tokenChar[5].ToString());
             int userIdLength, tokenUserId = 0;
             int[] userIdPositions = new int[6]; 
             
@@ -183,7 +182,7 @@ namespace TwixApp.Controllers
             switch (tokenType)
             {
                 case 0:
-                    userIdLength = tokenChar[43];
+                    userIdLength = int.Parse(tokenChar[43].ToString());
                     userIdPositions[0] = 23; userIdPositions[1] = 55; userIdPositions[2] = 43; userIdPositions[3] = 12; userIdPositions[4] = 6; userIdPositions[5] = 3;//positions for userId
 
                     for (int i = 0; i < userIdLength; i++)
@@ -192,7 +191,7 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 1:
-                    userIdLength = tokenChar[11];
+                    userIdLength = int.Parse(tokenChar[11].ToString());
                     userIdPositions[0] = 54; userIdPositions[1] = 42; userIdPositions[2] = 24; userIdPositions[3] = 32; userIdPositions[4] = 49; userIdPositions[5] = 20;
 
                     for (int i = 0; i < userIdLength; i++)
@@ -201,7 +200,7 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 2:
-                    userIdLength = tokenChar[48];
+                    userIdLength = int.Parse(tokenChar[48].ToString());
                     userIdPositions[0] = 57; userIdPositions[1] = 36; userIdPositions[2] = 28; userIdPositions[3] = 61; userIdPositions[4] = 37; userIdPositions[5] = 42;
 
                     for (int i = 0; i < userIdLength; i++)
@@ -210,7 +209,7 @@ namespace TwixApp.Controllers
                     }
                     break;
                 case 3:
-                    userIdLength = tokenChar[37];
+                    userIdLength = int.Parse(tokenChar[37].ToString());
                     userIdPositions[0] = 45; userIdPositions[1] = 48; userIdPositions[2] = 52; userIdPositions[3] = 29; userIdPositions[4] = 30; userIdPositions[5] = 9;
 
                     for (int i = 0; i < userIdLength; i++)

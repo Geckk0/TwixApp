@@ -15,15 +15,25 @@ namespace TwixApp.Controllers
         [HttpGet("{userToken}")]
         public async Task<IActionResult> CheckUserToken(string userToken)
         {
-            if (AuthHandler.VerifyToken(userToken, null)) return StatusCode(401, "Unautorised");
+            if(userToken == null || userToken.Length != 64) //No token but we want to wake up the server if it's sleeping
+            {
+                _context.Editions.Where(x => x.Id == 0).FirstOrDefault();
+                return StatusCode(400, "Poked server");
+            }
+
+            if (!AuthHandler.VerifyToken(userToken, null)) return StatusCode(401, "Bad token");
 
             int userId = AuthHandler.GetUserFromToken(userToken);
 
-            User user = await _context.Users.Where(x => x.Id.Equals(userId)).FirstOrDefaultAsync();
+            User user = await _context.Users.Include(x => x.Pops).Where(x => x.Id.Equals(userId)).FirstOrDefaultAsync();
 
             if (user == null) return StatusCode(404, "No user found");
 
-            return Ok();
+            if (user.DeletedAt != null) return Ok("Not active account");
+
+            foreach (var x in user.Pops) x.User = null;
+
+            return Ok(user);
         }
 
         [HttpGet("{nameemail}/{password}")]

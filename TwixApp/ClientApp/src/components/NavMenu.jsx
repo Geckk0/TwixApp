@@ -9,19 +9,24 @@ function NavMenu()  {
   const [collapsed, setCollased] = useState(true)
 
   useEffect(() => {
-    var token = localStorage.getItem("token", context.user.password)
-    if(token){
-      const fetchData = async () => {await fetch("user/" + token)
-        .then( response => !response.ok ? console.log(response) : response.json() )
-        .then( data => {
-          if(data){
-            localStorage.setItem("token", data.password)
-          }
-        })
-      }
+    var token = localStorage.getItem("token", context.user.password) //Collect token from storage if there is one
+    if(!token) token ="nousertoken" //Let's just poke the server to wake it up in case it is sleeping
 
-      fetchData()
+    const fetchData = async () => {await fetch("user/" + token) //Check token and collect user
+      .then( response => !response.ok ? undefined : response.json() )
+      .then( data => {
+        if(data){ //We found user -> update state
+          updateContext({user: data})
+          console.log("Welcome back " + data.username)
+        }
+        else{ //No user -> wakes up server if sleeping and clears storage
+          localStorage.removeItem("token")
+          console.log("Server could be sleeping, please wait 3-4 minutes to try again")
+        }
+      })
     }
+
+    fetchData()
   }, [])
 
   return (
@@ -44,7 +49,7 @@ function NavMenu()  {
                   <NavLink tag={Link} onClick={() => setCollased(true)} className="text-dark" to="/Pops">Pops</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink onClick={() => (updateContext({user: {id: 0, pops: {}}}), setCollased(true), localStorage.setItem("token", null))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
+                  <NavLink onClick={() => (updateContext({user: {id: 0, pops: {}}}), setCollased(true), localStorage.removeItem("token"))} tag={Link} className="text-dark" to="/">Sign out</NavLink>
                 </NavItem>
               </>:<>
                 <NavItem>
