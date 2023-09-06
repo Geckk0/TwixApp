@@ -156,7 +156,7 @@ namespace TwixApp.Controllers
                     break;
             }
 
-            dateString = $"{new string(year)} {new string(month)} {new string(day)} {new string(hour)}:00";
+            dateString = $"20{new string(year)}-{new string(month)}-{new string(day)}T{new string(hour)}:00";
             DateTime dateTime = DateTime.Parse(dateString);
             DateTime currentDateTime = DateTime.UtcNow;
 
